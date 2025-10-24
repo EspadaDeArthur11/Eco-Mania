@@ -1,1 +1,21 @@
+/*
+@font-face {
+    font-family: "Titulos";
+    src: url();
+}
+*/
 
+body {
+    background-color: rgb(220, 251, 233);
+}
+
+h1 {
+    color: rgb(0, 130, 54);
+    text-align: center;
+    /*Escolher fonte depois*/
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+p {
+    color: rgb(74, 85, 101)
+}
