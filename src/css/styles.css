@@ -6,10 +6,10 @@
 */
 
 .rounded-box {
-    background-color: rgb(248, 255, 251);
+    background-color: #F8FFFB;
     width: 400px;
     height: 400px;
-    border: 2px solid rgb(82, 90, 92);
+    border: 2px solid #525A5C;
     border-radius: 15px;
     padding: 20px;
     text-align: center;
@@ -17,12 +17,19 @@
     margin-top: 40px;
 }
 
+.jogo {
+    padding: 20px;
+    text-align: center;
+    margin: auto;
+    margin-top: 40px;
+}
+
 body {
-    background-color: rgb(220, 251, 233);
+    background-color: #DCFBE9;
 }
 
 h1 {
-    color: rgb(0, 130, 54);
+    color: #008236;
     text-align: center;
     /*Escolher fonte depois*/
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
@@ -30,18 +37,18 @@ h1 {
 }
 
 p {
-    color: rgb(74, 85, 101);
+    color: #4A5565;
     text-align: justify;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font-size: 20px;
 }
 
 button {
-    background-color: rgb(1, 185, 7);
+    background-color: #01B907;
     color:rgb(27, 27, 27);
     width: 40%;
     padding: 12px 24px;
-    border: 2px solid rgb(82, 90, 92);
+    border: 2px solid #525A5C;
     border-radius: 8px;
     padding: 5px;
     margin: 5px;
