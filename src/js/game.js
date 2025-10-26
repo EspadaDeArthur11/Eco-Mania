@@ -224,6 +224,7 @@ function create ()
     {
         
     }
+
 // Chame esta função quando o jogo terminar
 window.endGame = async function(finalScore, playerName) {
   try {

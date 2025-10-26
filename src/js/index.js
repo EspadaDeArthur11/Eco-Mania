@@ -5,14 +5,6 @@ document.getElementById("botaoJogar").onclick = function() {
 document.getElementById("botaoRec").onclick = function() {
     window.location.href = "records.html";
 }
-// Navegação dos botões da página inicial
-document.getElementById("botaoJogar")?.addEventListener("click", () => {
-  window.location.href = "game.html";
-});
-
-document.getElementById("botaoRec")?.addEventListener("click", () => {
-  window.location.href = "records.html";
-});
 
 //  Modo daltônico: salva/recupera preferência
 const daltonico = document.getElementById("mdal");
