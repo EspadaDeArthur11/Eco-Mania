@@ -113,7 +113,8 @@ function preload ()
 function create ()
 {
     var lixeira_papel, lixeira_plastico, lixeira_vidro, lixeira_metal, lixeira_organico;
-    var lixo1, lixo2, lixo3, lixo4, lixo5;
+    //var lixo1, lixo2, lixo3, lixo4, lixo5;
+    var lixo3;
     var tipos = ['lixeira_papel', 'lixeira_plastico', 'lixeira_vidro', 'lixeira_metal', 'lixeira_organico'];
     var pontuacao = 0;
     var textoPontuacao;
@@ -124,25 +125,25 @@ function create ()
     lixeira_metal = this.physics.add.image(1280, 900, 'lixeira_metal');
     lixeira_organico = this.physics.add.image(1600, 900, 'lixeira_organico');
     
-    lixo1 = this.physics.add.image(320, 300, tipos[Phaser.Math.Between(0,4)]).setScale(0.5);
-    lixo1._spawnX = 320; lixo1._spawnY = 300;
-    tornarArrastavel(lixo1);
-
-    lixo2 = this.physics.add.image(640, 300, tipos[Phaser.Math.Between(0,4)]).setScale(0.5);
-    lixo2._spawnX = 640; lixo2._spawnY = 300;
-    tornarArrastavel(lixo2);
+//    lixo1 = this.physics.add.image(320, 300, tipos[Phaser.Math.Between(0,4)]).setScale(0.5);
+//    lixo1._spawnX = 320; lixo1._spawnY = 300;
+//    tornarArrastavel(lixo1);
+//
+//    lixo2 = this.physics.add.image(640, 300, tipos[Phaser.Math.Between(0,4)]).setScale(0.5);
+//    lixo2._spawnX = 640; lixo2._spawnY = 300;
+//    tornarArrastavel(lixo2);
 
     lixo3 = this.physics.add.image(960, 300, tipos[Phaser.Math.Between(0,4)]).setScale(0.5);
     lixo3._spawnX = 960; lixo3._spawnY = 300;
     tornarArrastavel(lixo3);
 
-    lixo4 = this.physics.add.image(1280, 300, tipos[Phaser.Math.Between(0,4)]).setScale(0.5);
-    lixo4._spawnX = 1280; lixo4._spawnY = 300;
-    tornarArrastavel(lixo4);
-
-    lixo5 = this.physics.add.image(1600, 300, tipos[Phaser.Math.Between(1,3)]).setScale(0.5);
-    lixo5._spawnX = 1600; lixo5._spawnY = 300;
-    tornarArrastavel(lixo5);
+//    lixo4 = this.physics.add.image(1280, 300, tipos[Phaser.Math.Between(0,4)]).setScale(0.5);
+//    lixo4._spawnX = 1280; lixo4._spawnY = 300;
+//    tornarArrastavel(lixo4);
+//
+//    lixo5 = this.physics.add.image(1600, 300, tipos[Phaser.Math.Between(1,3)]).setScale(0.5);
+//    lixo5._spawnX = 1600; lixo5._spawnY = 300;
+//    tornarArrastavel(lixo5);
 
     function coletarLixo(lixo, lixeira) {
         if (lixo._colidiu) return;
@@ -158,6 +159,7 @@ function create ()
             (tipo === 'organico' && lixeira.texture.key === 'lixeira_organico')) {
                 acertou = true;
             }
+        
         if (acertou) {
             pontuacao += 10;
             textoPontuacao.setText('Pontuação: ' + pontuacao);
@@ -166,7 +168,6 @@ function create ()
         if (lixo.body) {
             lixo.body.enable = false;
         }
-
 
         var scene = this;
         scene.input.once('pointerup', function() {
@@ -180,17 +181,17 @@ function create ()
         }, scene);
     }
 
-    this.physics.add.overlap(lixo1, lixeira_papel, coletarLixo, null, this);
-    this.physics.add.overlap(lixo1, lixeira_plastico, coletarLixo, null, this);
-    this.physics.add.overlap(lixo1, lixeira_vidro, coletarLixo, null, this);
-    this.physics.add.overlap(lixo1, lixeira_metal, coletarLixo, null, this);
-    this.physics.add.overlap(lixo1, lixeira_organico, coletarLixo, null, this);
-
-    this.physics.add.overlap(lixo2, lixeira_plastico, coletarLixo, null, this);
-    this.physics.add.overlap(lixo2, lixeira_papel, coletarLixo, null, this);
-    this.physics.add.overlap(lixo2, lixeira_vidro, coletarLixo, null, this);
-    this.physics.add.overlap(lixo2, lixeira_metal, coletarLixo, null, this);
-    this.physics.add.overlap(lixo2, lixeira_organico, coletarLixo, null, this);
+//    this.physics.add.overlap(lixo1, lixeira_papel, coletarLixo, null, this);
+//    this.physics.add.overlap(lixo1, lixeira_plastico, coletarLixo, null, this);
+//    this.physics.add.overlap(lixo1, lixeira_vidro, coletarLixo, null, this);
+//    this.physics.add.overlap(lixo1, lixeira_metal, coletarLixo, null, this);
+//    this.physics.add.overlap(lixo1, lixeira_organico, coletarLixo, null, this);
+//
+//    this.physics.add.overlap(lixo2, lixeira_plastico, coletarLixo, null, this);
+//    this.physics.add.overlap(lixo2, lixeira_papel, coletarLixo, null, this);
+//    this.physics.add.overlap(lixo2, lixeira_vidro, coletarLixo, null, this);
+//    this.physics.add.overlap(lixo2, lixeira_metal, coletarLixo, null, this);
+//    this.physics.add.overlap(lixo2, lixeira_organico, coletarLixo, null, this);
 
     this.physics.add.overlap(lixo3, lixeira_vidro, coletarLixo, null, this);
     this.physics.add.overlap(lixo3, lixeira_papel, coletarLixo, null, this);
@@ -198,17 +199,17 @@ function create ()
     this.physics.add.overlap(lixo3, lixeira_metal, coletarLixo, null, this);
     this.physics.add.overlap(lixo3, lixeira_organico, coletarLixo, null, this);
 
-    this.physics.add.overlap(lixo4, lixeira_metal, coletarLixo, null, this);
-    this.physics.add.overlap(lixo4, lixeira_papel, coletarLixo, null, this);
-    this.physics.add.overlap(lixo4, lixeira_plastico, coletarLixo, null, this);
-    this.physics.add.overlap(lixo4, lixeira_vidro, coletarLixo, null, this);
-    this.physics.add.overlap(lixo4, lixeira_organico, coletarLixo, null, this);
-
-    this.physics.add.overlap(lixo5, lixeira_organico, coletarLixo, null, this);
-    this.physics.add.overlap(lixo5, lixeira_papel, coletarLixo, null, this);
-    this.physics.add.overlap(lixo5, lixeira_plastico, coletarLixo, null, this);
-    this.physics.add.overlap(lixo5, lixeira_vidro, coletarLixo, null, this);
-    this.physics.add.overlap(lixo5, lixeira_metal, coletarLixo, null, this);
+//    this.physics.add.overlap(lixo4, lixeira_metal, coletarLixo, null, this);
+//    this.physics.add.overlap(lixo4, lixeira_papel, coletarLixo, null, this);
+//    this.physics.add.overlap(lixo4, lixeira_plastico, coletarLixo, null, this);
+//    this.physics.add.overlap(lixo4, lixeira_vidro, coletarLixo, null, this);
+//    this.physics.add.overlap(lixo4, lixeira_organico, coletarLixo, null, this);
+//
+//    this.physics.add.overlap(lixo5, lixeira_organico, coletarLixo, null, this);
+//    this.physics.add.overlap(lixo5, lixeira_papel, coletarLixo, null, this);
+//    this.physics.add.overlap(lixo5, lixeira_plastico, coletarLixo, null, this);
+//    this.physics.add.overlap(lixo5, lixeira_vidro, coletarLixo, null, this);
+//    this.physics.add.overlap(lixo5, lixeira_metal, coletarLixo, null, this);
 
     textoPontuacao = this.add.text(this.scale.width / 2 - 250, 150, 'Pontuação: 0', {
             align: 'center',
