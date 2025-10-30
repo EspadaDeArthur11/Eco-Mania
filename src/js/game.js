@@ -56,7 +56,7 @@ function tornarArrastavel(gameObject, enableLogs = false) {
     gameObject.on('pointerdown', pegarObjeto);
     gameObject.on('destroy', destruir);
 }
-
+let GAME_OVER = false;
 var config = {
     type: Phaser.AUTO,
     width: 1920,
@@ -210,9 +210,20 @@ function create ()
         } else {
             quantVidas = quantVidas - 1;
             textoVidas.setText(vidas[quantVidas]);
-            if (quantVidas == 0) {
-                window.endGame(pontuacao);
-            }
+           if (quantVidas <= 0 && !GAME_OVER) {
+              GAME_OVER = true;
+
+          // pausa física e desabilita inputs
+              this.physics.world.pause();
+              this.input.enabled = false;
+
+          
+              this.time.delayedCall(50, () => {
+              window.endGame(pontuacao);
+  });
+return; // evita continuar executando
+}
+
         }
 
         if (lixo.body) {
