@@ -11,10 +11,8 @@ function tornarArrastavel(gameObject, enableLogs = false) {
     let offsetY = 0;
 
     function log(msg) {
-        if (enableLogs) {
-            console.debug(msg);
-        }
-    }
+      if (enableLogs) console.debug(msg);
+}
 
     // pointer argument é passado pelo evento pointerdown
     function pegarObjeto(pointer) {
