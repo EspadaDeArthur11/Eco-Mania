@@ -88,3 +88,20 @@ label {
     vertical-align: middle;;
 
 }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 8px 0;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+th, td {
+  border: 1px solid #525A5C33;
+  padding: 8px 10px;
+  text-align: left;
+}
+thead th {
+  background: #E9FFF4;
+  color: #0a6535;
+}
+tbody tr:nth-child(odd) { background: #F8FFFB; }
+tbody tr:hover { background: #EFFFF7; }
