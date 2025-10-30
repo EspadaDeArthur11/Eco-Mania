@@ -1,10 +1,9 @@
 document.getElementById("botaoMenu").onclick = function() {
     window.location.href = "index.html";
 }
-// Atualiza a tabela automaticamente (tempo real no Firestore; 1x no localStorage)
+// Preenche a tabela de recordes ao vivo (Firestore) / 1x (localStorage fallback)
 PhaserDB.attachLiveTable(10);
 
-// Botão "Voltar ao menu"
-document.getElementById("botaoMenu")?.addEventListener("click", () => {
+document.getElementById("botaoMenu").addEventListener("click", () => {
   window.location.href = "index.html";
 });

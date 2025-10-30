@@ -11,10 +11,8 @@ function tornarArrastavel(gameObject, enableLogs = false) {
     let offsetY = 0;
 
     function log(msg) {
-        if (enableLogs) {
-            console.debug(msg);
-        }
-    }
+      if (enableLogs) console.debug(msg);
+}
 
     // pointer argument é passado pelo evento pointerdown
     function pegarObjeto(pointer) {
@@ -58,7 +56,7 @@ function tornarArrastavel(gameObject, enableLogs = false) {
     gameObject.on('pointerdown', pegarObjeto);
     gameObject.on('destroy', destruir);
 }
-
+let GAME_OVER = false;
 var config = {
     type: Phaser.AUTO,
     width: 1920,
@@ -212,9 +210,20 @@ function create ()
         } else {
             quantVidas = quantVidas - 1;
             textoVidas.setText(vidas[quantVidas]);
-            if (quantVidas == 0) {
-                window.endGame(pontuacao);
-            }
+           if (quantVidas <= 0 && !GAME_OVER) {
+              GAME_OVER = true;
+
+          // pausa física e desabilita inputs
+              this.physics.world.pause();
+              this.input.enabled = false;
+
+          
+              this.time.delayedCall(50, () => {
+              window.endGame(pontuacao);
+  });
+return; // evita continuar executando
+}
+
         }
 
         if (lixo.body) {
@@ -287,8 +296,7 @@ function create ()
 
 window.endGame = async function(finalScore) {
   try {
-    // se não conseguir recuperar o nome, usamos "Jogador"
-    const name = document.getElementById('nomeJog').value || 'Jogador';
+    const name = (document.getElementById('nomeJog')?.value || "").trim() || 'Jogador';
     await PhaserDB.reportScore({ name, score: Number(finalScore) || 0 });
     console.log("[game] pontuação salva:", { name, finalScore });
   } catch (e) {
@@ -298,6 +306,7 @@ window.endGame = async function(finalScore) {
     window.location.href = "records.html";
   }
 };
+
 
 // Botão "Voltar ao menu"
 document.getElementById("botaoMenu")?.addEventListener("click", () => {
