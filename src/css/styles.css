@@ -59,9 +59,9 @@ button {
 
 input[type="text"] {
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    font-size: 15px;
+    font-size: 30px;
     width: 200px;
-    height: 30px;
+    height: 45px;
     margin-top: 20px;
     vertical-align: middle;
     padding: 4px 6px;
