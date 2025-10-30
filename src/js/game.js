@@ -296,8 +296,7 @@ return; // evita continuar executando
 
 window.endGame = async function(finalScore) {
   try {
-    // se não conseguir recuperar o nome, usamos "Jogador"
-    const name = document.getElementById('nomeJog').value || 'Jogador';
+    const name = (document.getElementById('nomeJog')?.value || "").trim() || 'Jogador';
     await PhaserDB.reportScore({ name, score: Number(finalScore) || 0 });
     console.log("[game] pontuação salva:", { name, finalScore });
   } catch (e) {
@@ -307,6 +306,7 @@ window.endGame = async function(finalScore) {
     window.location.href = "records.html";
   }
 };
+
 
 // Botão "Voltar ao menu"
 document.getElementById("botaoMenu")?.addEventListener("click", () => {
