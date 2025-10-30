@@ -25,3 +25,8 @@ O produto que será desenvolvido será um jogo para conscientizar as pessoas sob
 
 Os clientes principais seriam crianças de 9 a 10 anos, que estariam aprendendo sobre reciclagem na escola. No entanto, também poderia ser utilizado por adultos que buscam se conscientizar sobre reciclagem.
 
+### Como usar o programa
+
+Navegue em um terminal até a pasta "src" deste programa e rode o seguinte código:
+
+    python -m http.server
