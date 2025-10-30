@@ -89,25 +89,25 @@ function preload ()
     this.load.image('lixeira_organico', './assets/lixeira/organico.png');
     
     // carregar metal
-    this.load.image('metal1', './assets/metal/metal1.png');
-    this.load.image('metal2', './assets/metal/metal2.png');
-    this.load.image('metal3', './assets/metal/metal3.png');
+    this.load.image('metal_1', './assets/metal/metal_1.png');
+    this.load.image('metal_2', './assets/metal/metal_2.png');
+    this.load.image('metal_3', './assets/metal/metal_3.png');
     // carregar papel
-    this.load.image('papel1', './assets/papel/papel1.png');
-    this.load.image('papel2', './assets/papel/papel2.png');
-    this.load.image('papel3', './assets/papel/papel3.png');
+    this.load.image('papel_1', './assets/papel/papel_1.png');
+    this.load.image('papel_2', './assets/papel/papel_2.png');
+    this.load.image('papel_3', './assets/papel/papel_3.png');
     // carregar plastico
-    this.load.image('plastico1', './assets/plastico/plastico1.png');
-    this.load.image('plastico2', './assets/plastico/plastico2.png');
-    this.load.image('plastico3', './assets/plastico/plastico3.png');
+    this.load.image('plastico_1', './assets/plastico/plastico_1.png');
+    this.load.image('plastico_2', './assets/plastico/plastico_2.png');
+    this.load.image('plastico_3', './assets/plastico/plastico_3.png');
     // carregar vidro
-    this.load.image('vidro1', './assets/vidro/vidro1.png');
-    this.load.image('vidro2', './assets/vidro/vidro2.png');
-    this.load.image('vidro3', './assets/vidro/vidro3.png');
+    this.load.image('vidro_1', './assets/vidro/vidro_1.png');
+    this.load.image('vidro_2', './assets/vidro/vidro_2.png');
+    this.load.image('vidro_3', './assets/vidro/vidro_3.png');
     // carregar organico
-    this.load.image('organico1', './assets/organico/organico1.png');
-    this.load.image('organico2', './assets/organico/organico2.png');
-    this.load.image('organico3', './assets/organico/organico3.png');
+    this.load.image('organico_1', './assets/organico/organico_1.png');
+    this.load.image('organico_2', './assets/organico/organico_2.png');
+    this.load.image('organico_3', './assets/organico/organico_3.png');
 }
 
 function create ()
@@ -115,7 +115,11 @@ function create ()
     var lixeira_papel, lixeira_plastico, lixeira_vidro, lixeira_metal, lixeira_organico;
     //var lixo1, lixo2, lixo3, lixo4, lixo5;
     var lixo3;
-    var tipos = ['lixeira_papel', 'lixeira_plastico', 'lixeira_vidro', 'lixeira_metal', 'lixeira_organico'];
+    var tipos = ['papel_1', 'papel_2', 'papel_3',
+                 'plastico_1', 'plastico_2', 'plastico_3',
+                 'vidro_1', 'vidro_2', 'vidro_3',
+                 'metal_1', 'metal_2', 'metal_3',
+                 'organico_1', 'organico_2', 'organico_3'];
     var pontuacao = 0;
     var vidas = ['vidas: ', 'vidas: ♡', 'vidas: ♡ ♡', 'vidas: ♡ ♡ ♡'];
     var quantVidas = 3;
@@ -175,7 +179,7 @@ function create ()
 //    lixo2._spawnX = 640; lixo2._spawnY = 300;
 //    tornarArrastavel(lixo2);
 
-    lixo3 = this.physics.add.image(960, 300, tipos[Phaser.Math.Between(0,4)]).setScale(0.5);
+    lixo3 = this.physics.add.image(960, 300, tipos[Phaser.Math.Between(0,14)]).setScale(0.5);
     lixo3._spawnX = 960; lixo3._spawnY = 300;
     tornarArrastavel(lixo3);
 
@@ -193,7 +197,7 @@ function create ()
 
         console.log('colidiu ' + lixo.texture.key + ' com ' + lixeira.texture.key);
         var acertou = false;
-        var tipo = lixo.texture.key.split("_")[1];
+        var tipo = lixo.texture.key.split("_")[0];
         if ((tipo === 'papel'  && lixeira.texture.key === 'lixeira_papel') ||
             (tipo === 'plastico' && lixeira.texture.key === 'lixeira_plastico') ||
             (tipo === 'vidro' && lixeira.texture.key === 'lixeira_vidro') ||
@@ -225,7 +229,7 @@ function create ()
             lixo.x = (typeof lixo._spawnX !== 'undefined') ? lixo._spawnX : lixeira.x;
             lixo.y = (typeof lixo._spawnY !== 'undefined') ? lixo._spawnY : 300;
             lixo._colidiu = false;
-            lixo.setTexture(tipos[Phaser.Math.Between(0,4)]);
+            lixo.setTexture(tipos[Phaser.Math.Between(0,14)]);
         }, scene);
     }
 
