@@ -242,7 +242,6 @@ function create ()
         
     }
 
-// Chame esta função quando o jogo terminar
 window.endGame = async function(finalScore) {
   try {
     // se não tiver input de nome, usamos "Jogador"
@@ -256,10 +255,6 @@ window.endGame = async function(finalScore) {
     window.location.href = "records.html";
   }
 };
-
-// Exemplo de como acionar no seu fluxo atual:
-// - quando calcular a pontuação final, chame:
-///   window.endGame(pontuacaoFinal, nomeDoJogador);
 
 // Botão "Voltar ao menu"
 document.getElementById("botaoMenu")?.addEventListener("click", () => {
