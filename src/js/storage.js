@@ -58,7 +58,27 @@
         createdAt: firebase.firestore.FieldValue.serverTimestamp()
       };
       try {
+        // adiciona a nova entrada
         const docRef = await scoresRef.add(data);
+
+        // Limite máximo de entradas a manter
+        const MAX_ENTRIES = 6;
+
+        // Buscar todas as entradas ordenadas por score desc
+        const snapshot = await scoresRef.orderBy("score", "desc").get();
+
+                if (snapshot.size > MAX_ENTRIES) {
+          // calcular documentos a remover (os de menor score)
+          const docs = snapshot.docs; // já em ordem desc (maior -> menor)
+          const toDelete = docs.slice(MAX_ENTRIES); // índices >= MAX_ENTRIES são os menores
+
+          // apagar usando batch
+          const batch = db.batch();
+          toDelete.forEach(d => batch.delete(d.ref));
+          await batch.commit();
+          console.log(`[StorageDB] Limite de ${MAX_ENTRIES} aplicado. Removidas ${toDelete.length} entradas.`);
+        }
+
         return { id: docRef.id, ...data };
       } catch (e) {
         console.error("[StorageDB] erro ao salvar score:", e);

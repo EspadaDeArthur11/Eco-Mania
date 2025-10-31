@@ -93,6 +93,8 @@ table {
   border-collapse: collapse;
   margin: 8px 0;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  height: 600;
+  overflow-y: auto;
 }
 th, td {
   border: 1px solid #525A5C33;
