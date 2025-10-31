@@ -128,6 +128,45 @@ function create ()
     lixeira_metal = this.physics.add.image(1280, 900, 'lixeira_metal');
     lixeira_organico = this.physics.add.image(1600, 900, 'lixeira_organico');
     
+    const daltonico = localStorage.getItem("eco.daltonico") === "1"
+    if (daltonico) {
+        console.log("Modo Daltônico ligado");
+        this.add.text(320, 750, 'Papel', {
+            align: 'center',
+            fontSize: '40px',
+            fontFamily: "Cambria, Cochin, Georgia, Times, 'Times New Roman', serif",
+            wordWrap: {width: this.scale.width - 50},
+            color: '#000'
+        }).setOrigin(0.5);
+        this.add.text(640, 750, 'Plástico', {
+            align: 'center',
+            fontSize: '40px',
+            fontFamily: "Cambria, Cochin, Georgia, Times, 'Times New Roman', serif",
+            wordWrap: {width: this.scale.width - 50},
+            color: '#000'
+        }).setOrigin(0.5);
+        this.add.text(960, 750, 'Vidro', {
+            align: 'center',
+            fontSize: '40px',
+            fontFamily: "Cambria, Cochin, Georgia, Times, 'Times New Roman', serif",
+            wordWrap: {width: this.scale.width - 50},
+            color: '#000'
+        }).setOrigin(0.5);
+        this.add.text(1280, 750, 'Metal', {
+            align: 'center',
+            fontSize: '40px',
+            fontFamily: "Cambria, Cochin, Georgia, Times, 'Times New Roman', serif",
+            wordWrap: {width: this.scale.width - 50},
+            color: '#000'
+        }).setOrigin(0.5);
+        this.add.text(1600, 750, 'Orgânico', {
+            align: 'center',
+            fontSize: '40px',
+            fontFamily: "Cambria, Cochin, Georgia, Times, 'Times New Roman', serif",
+            wordWrap: {width: this.scale.width - 50},
+            color: '#000'
+        }).setOrigin(0.5);
+    }
 //    lixo1 = this.physics.add.image(320, 300, tipos[Phaser.Math.Between(0,4)]).setScale(0.5);
 //    lixo1._spawnX = 320; lixo1._spawnY = 300;
 //    tornarArrastavel(lixo1);
