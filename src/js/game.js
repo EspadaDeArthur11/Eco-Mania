@@ -224,3 +224,27 @@ function create ()
     {
         
     }
+// Chame esta função quando o jogo terminar
+window.endGame = async function(finalScore, playerName) {
+  try {
+    // se não tiver input de nome, usamos "Jogador"
+    const name = (playerName && String(playerName).trim()) || "Jogador";
+    await PhaserDB.reportScore({ name, score: Number(finalScore) || 0 });
+    console.log("[game] pontuação salva:", { name, finalScore });
+  } catch (e) {
+    console.error("[game] erro ao salvar score:", e);
+    alert("Não foi possível salvar sua pontuação agora :(");
+  } finally {
+    // opcional: ir para a tela de recordes ao finalizar
+    // window.location.href = "records.html";
+  }
+};
+
+// Exemplo de como acionar no seu fluxo atual:
+// - quando calcular a pontuação final, chame:
+///   window.endGame(pontuacaoFinal, nomeDoJogador);
+
+// Botão "Voltar ao menu"
+document.getElementById("botaoMenu")?.addEventListener("click", () => {
+  window.location.href = "index.html";
+});
