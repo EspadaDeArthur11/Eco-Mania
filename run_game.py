@@ -36,9 +36,6 @@ def main():
         # 0.0.0.0 (bind) e o endereço que o navegador deve usar para acessar o servidor
         url_local = f"http://127.0.0.1:{args.port}/index.html"
         url_base = f"http://{host}:{args.port}/"
-        print(f"Servindo '{src_dir}' em:")
-        print(f"  Local (abrir no navegador):   {url_local}")
-        print(f"  Bind (externo):               {url_base}")
 
         # iniciar servidor em thread para conseguir escutar entrada do usuário no terminal
         import threading
