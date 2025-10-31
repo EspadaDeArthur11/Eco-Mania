@@ -220,8 +220,9 @@ function create ()
           
               this.time.delayedCall(50, () => {
               window.endGame(pontuacao);
+              return; // evita continuar executando
   });
-return; // evita continuar executando
+
 }
 
         }
