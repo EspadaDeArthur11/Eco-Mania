@@ -117,7 +117,10 @@ function create ()
     var lixo3;
     var tipos = ['lixeira_papel', 'lixeira_plastico', 'lixeira_vidro', 'lixeira_metal', 'lixeira_organico'];
     var pontuacao = 0;
+    var vidas = ['vidas: ', 'vidas: ♡', 'vidas: ♡ ♡', 'vidas: ♡ ♡ ♡'];
+    var quantVidas = 3;
     var textoPontuacao;
+    var textoVidas;
 
     lixeira_papel = this.physics.add.image(320, 900, 'lixeira_papel');
     lixeira_plastico = this.physics.add.image(640, 900, 'lixeira_plastico');
@@ -163,6 +166,12 @@ function create ()
         if (acertou) {
             pontuacao += 10;
             textoPontuacao.setText('Pontuação: ' + pontuacao);
+        } else {
+            quantVidas = quantVidas - 1;
+            textoVidas.setText(vidas[quantVidas]);
+            if (quantVidas == 0) {
+                window.endGame(pontuacao);
+            }
         }
 
         if (lixo.body) {
@@ -218,6 +227,14 @@ function create ()
             wordWrap: {width: this.scale.width - 50},
             color: '#000'
         }).setOrigin(0.5);
+
+    textoVidas = this.add.text(this.scale.width / 2 + 250, 150, 'Vidas: ♡ ♡ ♡', {
+            align: 'center',
+            fontSize: '40px',
+            fontFamily: "Cambria, Cochin, Georgia, Times, 'Times New Roman', serif",
+            wordWrap: {width: this.scale.width - 50},
+            color: '#000'
+        }).setOrigin(0.5);
 }
 
     function update ()
@@ -226,7 +243,7 @@ function create ()
     }
 
 // Chame esta função quando o jogo terminar
-window.endGame = async function(finalScore, playerName) {
+window.endGame = async function(finalScore) {
   try {
     // se não tiver input de nome, usamos "Jogador"
     const name = (playerName && String(playerName).trim()) || "Jogador";
@@ -236,8 +253,7 @@ window.endGame = async function(finalScore, playerName) {
     console.error("[game] erro ao salvar score:", e);
     alert("Não foi possível salvar sua pontuação agora :(");
   } finally {
-    // opcional: ir para a tela de recordes ao finalizar
-    // window.location.href = "records.html";
+    window.location.href = "records.html";
   }
 };
 
