@@ -1,7 +1,5 @@
-// Preenche a tabela de recordes em tempo real (top 10)
-PhaserDB.attachLiveTable(10);
-
-// Voltar ao menu
-document.getElementById("botaoMenu")?.addEventListener("click", () => {
+document.getElementById("botaoMenu").onclick = () => {
   window.location.href = "index.html";
-});
+};
+
+PhaserDB.attachLiveTable(10);
