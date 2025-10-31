@@ -252,7 +252,7 @@ window.endGame = async function (finalScore) {
     await PhaserDB.reportScore({ name, score: Number(finalScore) || 0 });
     console.log("[game] pontuação salva:", { name, finalScore });
   } catch (e) {
-    console.error("[game] erro ao salvar score:", e);
+    console.error("[game] erro ao salvar score:", { e });
     alert("Não foi possível salvar sua pontuação agora :(");
   } finally {
     window.location.href = "records.html";
