@@ -1,45 +1,51 @@
 // storage.js
-// Firestore: salvar/listar/escutar scores
-
-// Garante que o app Firebase esteja inicializado (compat).
-if (!firebase.apps?.length) {
-  firebase.initializeApp(FIREBASE_CONFIG);
-}
-
+// Conexão com o Firestore já é feita no firebase.js
 const db = firebase.firestore();
+const scoresRef = db.collection("scores");
 
-// Salva uma pontuação
-async function saveScore({ name, score }) {
-  const doc = {
-    name: String(name || "Jogador").slice(0, 32),
-    score: Number(score || 0),
-    timestamp: Date.now()
-  };
-  const ref = await db.collection("scores").add(doc);
-  return { id: ref.id, ...doc };
-}
+// │ Salvar pontuação
+window.PhaserDB = {
+  async reportScore({ name, score }) {
+    try {
+      await scoresRef.add({
+        name,
+        score,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+      });
+      console.log("[storage] Pontuação salva:", name, score);
+    } catch (e) {
+      console.error("[storage] Erro ao salvar:", e);
+      throw e;
+    }
+  },
 
-// Busca top N (desc)
-async function getTopScores(limit = 10) {
-  const snap = await db
-    .collection("scores")
-    .orderBy("score", "desc")
-    .limit(Number(limit || 10))
-    .get();
-  return snap.docs.map(d => ({ id: d.id, ...d.data() }));
-}
+  // │ Atualizar tabela de recordes em tempo real
+  attachLiveTable(limit = 10) {
+    const tbody = document.getElementById("records-body");
+    if (!tbody) return;
 
-// Escuta top N em tempo real (retorna unsubscribe)
-function listenTopScores(limit = 10, callback) {
-  return db
-    .collection("scores")
-    .orderBy("score", "desc")
-    .limit(Number(limit || 10))
-    .onSnapshot(snap => {
-      const rows = snap.docs.map(d => ({ id: d.id, ...d.data() }));
-      callback(rows);
-    }, err => console.error("[storage.js] onSnapshot error:", err));
-}
+    scoresRef
+      .orderBy("score", "desc")
+      .limit(limit)
+      .onSnapshot((snap) => {
+        tbody.innerHTML = "";
+        let rank = 1;
 
-window.StorageDB = { saveScore, getTopScores, listenTopScores };
+        snap.forEach((doc) => {
+          const data = doc.data();
+          const date = data.createdAt?.toDate().toLocaleString("pt-BR") || "Agora";
 
+          const row = `
+            <tr>
+              <td>${rank}</td>
+              <td>${data.name}</td>
+              <td>${data.score}</td>
+              <td>${date}</td>
+            </tr>
+          `;
+          tbody.insertAdjacentHTML("beforeend", row);
+          rank++;
+        });
+      });
+  }
+};
