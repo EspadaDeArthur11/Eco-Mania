@@ -244,8 +244,8 @@ function create ()
 
 window.endGame = async function(finalScore) {
   try {
-    // se não tiver input de nome, usamos "Jogador"
-    const name = (playerName && String(playerName).trim()) || "Jogador";
+    // se não conseguir recuperar o nome, usamos "Jogador"
+    const name = document.getElementById('nomeJog').value || 'Jogador';
     await PhaserDB.reportScore({ name, score: Number(finalScore) || 0 });
     console.log("[game] pontuação salva:", { name, finalScore });
   } catch (e) {
