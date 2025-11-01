@@ -1,4 +1,3 @@
-// ...existing code...
 (function () {
   function escapeHtml(str = "") {
     return String(str)
@@ -16,7 +15,6 @@
     );
     console.error(err);
 
-    // API que falha explicitamente para avisar o responsável
     window.StorageDB = {
       saveScore() {
         return Promise.reject(err);
@@ -39,11 +37,9 @@
       }
     };
 
-    // Parar aqui (sem fallback)
     return;
   }
 
-  // Se chegou aqui, Firebase está disponível
   const db = firebase.firestore();
   const scoresRef = db.collection("scores");
 
